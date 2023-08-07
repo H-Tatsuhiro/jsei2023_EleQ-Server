@@ -43,7 +43,8 @@ def Stats():
     x = []
     for content in request.json:
         for d in content['data']:
-            x.append(int(d[0]))
+            x.append(int(d))
+
     x = np.array(x)
     y = []
     for i in range(0, len(x)):
@@ -52,8 +53,11 @@ def Stats():
 
     savefigpath = "img/fig.png";
     plt.bar(y, x)
-    plt.tick_params(labelbottom=False)
+    plt.tick_params(labelbottom=False, bottom=False)
     plt.savefig(savefigpath)
+
+    x = []
+    y = []
 
     response_data = []
     with open(savefigpath, "rb") as f:
